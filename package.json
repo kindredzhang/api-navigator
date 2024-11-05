@@ -1,0 +1,124 @@
+{
+  "name": "api-navigator",
+  "displayName": "API Navigator",
+  "description": "Quick API endpoint navigation for multiple frameworks. Currently supports Spring Boot REST APIs, with more frameworks coming soon.",
+  "version": "0.0.3",
+  "publisher": "KindredZhang",
+  "author": {
+    "name": "KindredZhang"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Other"
+  ],
+  "keywords": [
+    "api",
+    "endpoint",
+    "spring-boot",
+    "java",
+    "rest"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "apiEndpointFinder.searchEndpoints",
+        "title": "Search API Endpoints",
+        "category": "API Navigator",
+        "icon": "$(search)"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "apiEndpointFinder.searchEndpoints",
+        "key": "ctrl+shift+a",
+        "mac": "cmd+shift+a",
+        "when": "true"
+      }
+    ],
+    "configuration": {
+      "title": "API Navigator",
+      "properties": {
+        "apiNavigator.enableQuickSearch": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable quick search for API endpoints"
+        }
+      }
+    },
+    "menus": {
+      "editor/title": [
+        {
+          "command": "apiEndpointFinder.searchEndpoints",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "l10n": "./i18n",
+  "scripts": {
+    "vscode:prepublish": "npm run convert-icon && npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "convert-icon": "ts-node scripts/convert-icon.ts"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.1.0",
+    "@types/js-yaml": "^4.0.9",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.1",
+    "@typescript-eslint/parser": "^6.13.1",
+    "@vscode/test-electron": "^2.3.8",
+    "eslint": "^8.54.0",
+    "glob": "^10.3.10",
+    "mocha": "^10.2.0",
+    "sharp": "^0.32.6",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.3.2"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kindred/api-navigator"
+  },
+  "bugs": {
+    "url": "https://github.com/kindred/api-navigator/issues"
+  },
+  "homepage": "https://github.com/kindred/api-navigator#readme",
+  "supportedFrameworks": {
+    "current": [
+      "Spring Boot (Java)"
+    ],
+    "planned": [
+      "Express.js (Node.js)",
+      "FastAPI (Python)",
+      "Laravel (PHP)",
+      "ASP.NET Core (C#)"
+    ]
+  },
+  "icon": "images/icon.png",
+  "galleryBanner": {
+    "color": "#C80000",
+    "theme": "dark"
+  },
+  "preview": true,
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    }
+  }
+}

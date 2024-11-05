@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128" height="128" version="1.1" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+    <!-- 背景 -->
+    <rect width="128" height="128" fill="#1e1e1e"/>
+    
+    <!-- API 路径图形 -->
+    <g transform="translate(64 64)">
+        <!-- 连接线 -->
+        <path d="M-40,-30 L-20,-30 L-20,0 L20,0 L20,30 L40,30" 
+              stroke="#4CAF50" 
+              stroke-width="4" 
+              fill="none"
+              stroke-linecap="round"/>
+        
+        <!-- 端点圆点 -->
+        <circle cx="-40" cy="-30" r="6" fill="#4CAF50"/>
+        <circle cx="40" cy="30" r="6" fill="#4CAF50"/>
+        
+        <!-- API 文本背景 -->
+        <rect x="-15" y="-8" width="30" height="16" 
+              fill="#4CAF50" rx="3"/>
+    </g>
+    
+    <!-- 搜索图标 -->
+    <g transform="translate(85 85)">
+        <!-- 放大镜 -->
+        <circle cx="0" cy="0" r="14" 
+                stroke="#ffffff" 
+                stroke-width="4" 
+                fill="none"/>
+        <line x1="10" y1="10" x2="20" y2="20" 
+              stroke="#ffffff" 
+              stroke-width="4" 
+              stroke-linecap="round"/>
+    </g>
+    
+    <!-- API 文本 -->
+    <g transform="translate(64 64)">
+        <text x="-12" y="4" 
+              font-family="Arial" 
+              font-size="12" 
+              fill="#ffffff" 
+              font-weight="bold">API</text>
+    </g>
+    
+    <!-- 装饰性点缀 -->
+    <g transform="translate(64 64)">
+        <circle cx="-45" cy="-35" r="2" fill="#4CAF50"/>
+        <circle cx="45" cy="35" r="2" fill="#4CAF50"/>
+    </g>
+</svg> 

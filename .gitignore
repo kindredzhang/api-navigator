@@ -1,0 +1,10 @@
+out/
+node_modules/
+*.vsix
+.DS_Store
+.vscode-test/
+
+# VS Code
+.vscode/
+.code-workspace
+.vscodeignore

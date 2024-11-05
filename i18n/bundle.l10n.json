@@ -1,0 +1,8 @@
+{
+    "en": {
+        "package.i18n.json": "./en/package.i18n.json"
+    },
+    "zh-cn": {
+        "package.i18n.json": "./zh-cn/package.i18n.json"
+    }
+} 
