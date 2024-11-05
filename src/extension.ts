@@ -35,9 +35,8 @@ export function activate(context: vscode.ExtensionContext) {
         fileWatcher.onDidChange(() => provider.scanWorkspace());
         fileWatcher.onDidCreate(() => provider.scanWorkspace());
         fileWatcher.onDidDelete(() => provider.scanWorkspace());
-        
         // Register command
-        let disposable = vscode.commands.registerCommand('apiEndpointFinder.searchEndpoints', async () => {
+        const disposable = vscode.commands.registerCommand('apiEndpointFinder.searchEndpoints', async () => {
             try {
                 const quickPick = new EndpointQuickPick();
                 await quickPick.show();

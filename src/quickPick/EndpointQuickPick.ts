@@ -3,8 +3,12 @@ import { ApiEndpoint } from '../models/ApiEndpoint';
 import { ApiEndpointProvider } from '../providers/ApiEndpointProvider';
 import { debounce } from '../utils/debounce';
 
+interface EndpointQuickPickItem extends vscode.QuickPickItem {
+    endpoint: ApiEndpoint;
+}
+
 export class EndpointQuickPick {
-    private quickPick: vscode.QuickPick<vscode.QuickPickItem>;
+    private quickPick: vscode.QuickPick<EndpointQuickPickItem>;
     private provider: ApiEndpointProvider;
     private readonly debouncedSearch: (value: string) => void;
 
@@ -35,7 +39,7 @@ export class EndpointQuickPick {
         this.quickPick.items = this.formatEndpoints(endpoints);
     }
 
-    private formatEndpoints(endpoints: ApiEndpoint[]): vscode.QuickPickItem[] {
+    private formatEndpoints(endpoints: ApiEndpoint[]): EndpointQuickPickItem[] {
         return endpoints.map(endpoint => ({
             label: `$(link) ${endpoint.path}`,
             description: `$(symbol-class) ${endpoint.className}.${endpoint.methodName}`,
@@ -45,9 +49,9 @@ export class EndpointQuickPick {
     }
 
     private async onDidAccept() {
-        const selected = this.quickPick.selectedItems[0] as any;
+        const selected = this.quickPick.selectedItems[0] as EndpointQuickPickItem;
         if (selected?.endpoint) {
-            const endpoint = selected.endpoint as ApiEndpoint;
+            const endpoint = selected.endpoint;
             const document = await vscode.workspace.openTextDocument(endpoint.filePath);
             const editor = await vscode.window.showTextDocument(document);
             

@@ -1,8 +1,6 @@
 import * as vscode from 'vscode';
 import { ApiEndpoint } from '../models/ApiEndpoint';
 import * as fs from 'fs';
-import * as path from 'path';
-import * as yaml from 'js-yaml';
 
 export class ApiEndpointProvider {
     private static instance: ApiEndpointProvider;
@@ -65,7 +63,7 @@ export class ApiEndpointProvider {
     }
 
     private async scanSpringBootProject(folderPath: string): Promise<void> {
-        const files = await vscode.workspace.findFiles('**/*.java');
+        const files = await vscode.workspace.findFiles(new vscode.RelativePattern(folderPath, '**/*.java'));
         
         // Process files in parallel
         await Promise.all(files.map(async file => {

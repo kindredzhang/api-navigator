@@ -2,6 +2,10 @@
 
 Quick API endpoint navigation for multiple frameworks. Press Ctrl+Shift+A (Cmd+Shift+A on Mac) to search both files and API endpoints in your workspace, similar to IntelliJ IDEA's search everywhere feature.
 
+🔌 [Install from VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=KindredZhang.api-navigator)
+
+![Demo](docs/images/demo.gif)
+
 ## Features
 
 - 🔍 Quick search for API endpoints using Ctrl+Shift+A (Cmd+Shift+A on Mac)
@@ -56,6 +60,8 @@ Initial release:
 ## Contributing
 
 This extension is in active development. Feel free to contribute or suggest new features!
+
+I'm an individual developer looking to connect with others. Feel free to reach out at kindred.zhang.life@gmail.com - I'd love to hear your thoughts and ideas!
 
 ## License
 
