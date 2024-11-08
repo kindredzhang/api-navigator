@@ -5,11 +5,18 @@ import { beforeActiveCheck } from './utils/check';
 
 export async function activate(context: vscode.ExtensionContext) {
     try {
-        // 检查项目类型，如果不支持则直接返回
-        const projectType = await beforeActiveCheck();
-        if (!projectType || projectType === 'unknown') {
-            return;
-        }
+        console.log('Registering apiEndpointFinder.searchEndpoints command...');
+        const searchCommand = vscode.commands.registerCommand('apiEndpointFinder.searchEndpoints', async () => {
+            console.log('Search command triggered');
+            try {
+                const quickPick = new EndpointQuickPick();
+                await quickPick.show();
+            } catch (error) {
+                console.error('Error in search command:', error);
+                vscode.window.showErrorMessage('Failed to open API search: ' + error);
+            }
+        });
+        console.log('Command registered successfully');
 
         // 初始化 provider 和状态栏
         const provider = ApiEndpointProvider.getInstance();
@@ -20,7 +27,15 @@ export async function activate(context: vscode.ExtensionContext) {
         statusBarItem.text = "$(search) Search API";
         statusBarItem.tooltip = "Search API Endpoints";
         statusBarItem.command = 'apiEndpointFinder.searchEndpoints';
-        statusBarItem.show();
+
+        // 检查项目类型
+        const projectType = await beforeActiveCheck();
+        if (projectType && projectType !== 'unknown') {
+            statusBarItem.show();
+            await provider.scanWorkspace();
+        } else {
+            statusBarItem.hide();
+        }
 
         // 监听工作区变化
         const workspaceChangeListener = vscode.workspace.onDidChangeWorkspaceFolders(async () => {
@@ -40,33 +55,26 @@ export async function activate(context: vscode.ExtensionContext) {
             }
         });
 
-        // 初始扫描
-        await provider.scanWorkspace();
-        
-        // 文件监听器 - 根据项目类型设置监听的文件类型
-        const filePattern = getFilePattern(projectType);
-        const fileWatcher = vscode.workspace.createFileSystemWatcher(filePattern);
-        fileWatcher.onDidChange(() => provider.scanWorkspace());
-        fileWatcher.onDidCreate(() => provider.scanWorkspace());
-        fileWatcher.onDidDelete(() => provider.scanWorkspace());
-
-        // 注册命令
-        const searchCommand = vscode.commands.registerCommand('apiEndpointFinder.searchEndpoints', async () => {
-            try {
-                const quickPick = new EndpointQuickPick();
-                await quickPick.show();
-            } catch (error) {
-                console.error('Error in search command:', error);
-            }
-        });
+        // 只在项目类型正确时设置文件监听器
+        let fileWatcher: vscode.FileSystemWatcher | undefined;
+        if (projectType && projectType !== 'unknown') {
+            const filePattern = getFilePattern(projectType);
+            fileWatcher = vscode.workspace.createFileSystemWatcher(filePattern);
+            fileWatcher.onDidChange(() => provider.scanWorkspace());
+            fileWatcher.onDidCreate(() => provider.scanWorkspace());
+            fileWatcher.onDidDelete(() => provider.scanWorkspace());
+        }
 
         // 注册所有订阅
         context.subscriptions.push(
+            searchCommand,
             statusBarItem,
-            fileWatcher,
-            workspaceChangeListener,
-            searchCommand
+            workspaceChangeListener
         );
+
+        if (fileWatcher) {
+            context.subscriptions.push(fileWatcher);
+        }
 
         // 首次激活提示
         const hasShownGuide = context.globalState.get('apiNavigator.hasShownGuide');
@@ -78,7 +86,8 @@ export async function activate(context: vscode.ExtensionContext) {
         }
 
     } catch (error) {
-        console.error('API Navigator activation error:', error);
+        console.error('Activation error:', error);
+        vscode.window.showErrorMessage('Failed to activate API Navigator: ' + error);
     }
 }
 

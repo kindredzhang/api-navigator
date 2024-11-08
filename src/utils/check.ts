@@ -10,7 +10,7 @@ export async function checkProjectType(folderPath: string): Promise<string> {
         const pomFiles = await vscode.workspace.findFiles('**/pom.xml');
         if (pomFiles.length > 0) {
             const content = await fs.promises.readFile(pomFiles[0].fsPath, 'utf8');
-            if (content.includes('springBoot-starter-web')) {
+            if (content.includes('spring-boot-starter-web')) {
                 return 'springBoot';
             }
         }
