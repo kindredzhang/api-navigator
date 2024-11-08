@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { ApiEndpoint } from '../models/ApiEndpoint';
+import { ApiEndpoint } from '../core/types';
 import { ApiEndpointProvider } from '../providers/ApiEndpointProvider';
 import { debounce } from '../utils/debounce';
 
@@ -41,7 +41,7 @@ export class EndpointQuickPick {
 
     private formatEndpoints(endpoints: ApiEndpoint[]): EndpointQuickPickItem[] {
         return endpoints.map(endpoint => ({
-            label: `$(link) ${endpoint.path}`,
+            label: `$(link) ${endpoint.apiPath}`,
             description: `$(symbol-class) ${endpoint.className}.${endpoint.methodName}`,
             detail: `$(file-code) ${vscode.workspace.asRelativePath(endpoint.filePath)}:${endpoint.lineNumber}`,
             endpoint: endpoint

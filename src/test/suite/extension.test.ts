@@ -10,7 +10,7 @@ suite('Extension Test Suite', () => {
     test('Endpoint parsing', async () => {
         const provider = ApiEndpointProvider.getInstance();
         await provider.scanWorkspace();
-        const endpoints = provider.getEndpoints();
+        const endpoints = provider.searchEndpoints('@GetMapping');
         assert.ok(Array.isArray(endpoints));
     });
 }); 
