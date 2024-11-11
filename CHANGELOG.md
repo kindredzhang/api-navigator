@@ -1,4 +1,7 @@
 # Change Log
+## [0.0.5] - 2024-11-11
+  - Fixed some bugs
+  
 ## [0.0.4] - 2024-11-08
 ### Added
 - **Support for Multiple Frameworks**: 
