@@ -3,6 +3,9 @@ import { ApiEndpoint, ProjectType, Scanner } from '../core/types';
 import { SpringBootScanner } from '../scanners/java/SpringBootScanner';
 import { checkProjectType } from '../utils/check';
 import { GinScanner } from '../scanners/golang/GinScanner';
+import { EchoScanner } from '../scanners/golang/EchoScanner';
+import { ExpressScanner } from '../scanners/node/ExpressScanner';
+import { NestScanner } from '../scanners/node/NestScanner';
 // Import other scanners...
 
 export class ApiEndpointProvider {
@@ -31,6 +34,21 @@ export class ApiEndpointProvider {
         // golang gin
         this.scanners.set('gin', new GinScanner({
             fileExtensions: ['go'],
+            excludePatterns: ['**/test/**', '**/tests/**', '**/Tests/**'],
+        }));
+        // golang echo
+        this.scanners.set('echo', new EchoScanner({
+            fileExtensions: ['go'],
+            excludePatterns: ['**/test/**', '**/tests/**', '**/Tests/**'],
+        }));
+        // node express
+        this.scanners.set('express', new ExpressScanner({
+            fileExtensions: ['js', 'ts'],
+            excludePatterns: ['**/test/**', '**/tests/**', '**/Tests/**'],
+        }));
+        // node nest
+        this.scanners.set('nest', new NestScanner({
+            fileExtensions: ['ts'],
             excludePatterns: ['**/test/**', '**/tests/**', '**/Tests/**'],
         }));
         // Initialize other scanners...
