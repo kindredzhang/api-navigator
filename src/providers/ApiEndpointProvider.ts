@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import { ApiEndpoint, ProjectType, Scanner } from '../core/types';
 import { SpringBootScanner } from '../scanners/java/SpringBootScanner';
 import { checkProjectType } from '../utils/check';
+import { GinScanner } from '../scanners/golang/GinScanner';
 // Import other scanners...
 
 export class ApiEndpointProvider {
@@ -22,8 +23,14 @@ export class ApiEndpointProvider {
     }
 
     private initializeScanners() {
+        // java springBoot
         this.scanners.set('springBoot', new SpringBootScanner({
             fileExtensions: ['java'],
+            excludePatterns: ['**/test/**', '**/tests/**', '**/Tests/**'],
+        }));
+        // golang gin
+        this.scanners.set('gin', new GinScanner({
+            fileExtensions: ['go'],
             excludePatterns: ['**/test/**', '**/tests/**', '**/Tests/**'],
         }));
         // Initialize other scanners...

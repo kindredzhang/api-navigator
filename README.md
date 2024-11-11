@@ -15,17 +15,27 @@ Quick API endpoint navigation for multiple frameworks. Press Ctrl+Shift+A (Cmd+S
 - 📊 Split view showing both files and API endpoints
 - ⌨️ Customizable keyboard shortcuts
 
-## Currently Supported
+## Currently Supported Frameworks
 
-- Spring Boot (Java)
+- **Spring Boot (Java)**
   - Request mappings (`@RequestMapping`, `@GetMapping`, etc.)
   - Context path from properties/yaml files
   - Nested path resolution
 
+- **Express.js (Node.js)**
+  - Route definitions using `app.get()`, `router.get()`, etc.
+
+- **Nest.js (Node.js)**
+  - Route decorators (`@Get`, `@Post`, etc.) and controller definitions.
+
+- **Gin (Go)**
+  - Route definitions using `r.GET()`, `group.GET()`, etc.
+
+- **Echo (Go)**
+  - Route definitions using `e.GET()`, `group.GET()`, etc.
+
 ## Planned Support
 
-- Express.js (Node.js)
-- FastAPI (Python)
 - Laravel (PHP)
 - ASP.NET Core (C#)
 
@@ -46,6 +56,10 @@ Quick API endpoint navigation for multiple frameworks. Press Ctrl+Shift+A (Cmd+S
 - Work in progress for other frameworks
 
 ## Release Notes
+
+### 0.0.4
+- Added support for Express.js, Nest.js, Gin, and Echo frameworks.
+- Enhanced performance and bug fixes.
 
 ### 0.0.3
 - Added support for custom keyboard shortcuts

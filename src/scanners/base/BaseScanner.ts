@@ -26,7 +26,7 @@ export abstract class BaseScanner {
     }
 
     protected async validateFileSize(filePath: string): Promise<boolean> {
-        if (!this.config.maxFileSizeBytes) return true;
+        if (!this.config.maxFileSizeBytes) {return true;}
         const content = await FileUtils.readFileContent(filePath);
         return content.length <= this.config.maxFileSizeBytes;
     }

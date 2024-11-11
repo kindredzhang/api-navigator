@@ -1,9 +1,20 @@
 # Change Log
-
 ## [0.0.4] - 2024-11-08
-### Fixed
-- Fix known bugs
+### Added
+- **Support for Multiple Frameworks**: 
+  - Added support for **Express.js**: Now you can scan and navigate API endpoints defined in Express applications.
+  - Added support for **Nest.js**: Integrated support for Nest framework, allowing endpoint detection in Nest applications.
+  - Added support for **Gin**: Included support for Gin framework, enabling seamless integration for projects using Gin.
+  - Added support for **Echo**: Now supports Echo framework, allowing for easy navigation of API endpoints.
 
+### Fixed
+- **Bug Fixes**: Resolved several known issues that were affecting the stability and performance of the application. This includes:
+  - Fixed a bug that caused incorrect routing in certain scenarios.
+  - Addressed issues with API endpoint detection that led to false positives.
+  - Improved error handling for file scanning processes.
+
+### Notes
+- Users are encouraged to update to this version to benefit from the new features and improvements.
 
 ## [0.0.3] - 2024-11-05
 ### Fixed
