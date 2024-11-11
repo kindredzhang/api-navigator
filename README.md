@@ -52,7 +52,7 @@ Quick API endpoint navigation for multiple frameworks. Press Ctrl+Shift+A (Cmd+S
 
 ## Known Issues
 
-- Currently only supports Spring Boot REST APIs
+- Currently supports Gin, Echo, Spring Boot, Express, Nest
 - Work in progress for other frameworks
 
 ## Release Notes
