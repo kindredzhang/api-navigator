@@ -2,7 +2,7 @@
   "name": "api-navigator",
   "displayName": "API Navigator",
   "description": "Quick API endpoint navigation for multiple frameworks. Currently supports Spring Boot REST APIs, with more frameworks coming soon.",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "publisher": "KindredZhang",
   "author": {
     "name": "KindredZhang"
@@ -101,10 +101,13 @@
   "homepage": "https://github.com/kindred/api-navigator#readme",
   "supportedFrameworks": {
     "current": [
-      "Spring Boot (Java)"
+      "Spring Boot (Java)",
+      "Gin (Golang)",
+      "Echo (Golang)",
+      "Express.js (Node.js)",
+      "Nest (Node.js)"
     ],
     "planned": [
-      "Express.js (Node.js)",
       "FastAPI (Python)",
       "Laravel (PHP)",
       "ASP.NET Core (C#)"
