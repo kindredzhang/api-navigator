@@ -1,4 +1,4 @@
-export type ProjectType = 'springBoot' | 'express' | 'nest' | 'gin' | 'echo' | 'unknown';
+export type ProjectType = 'springBoot' | 'express' | 'nest' | 'gin' | 'echo' | 'fastapi' | 'unknown';
 
 export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
 

@@ -39,6 +39,20 @@ export async function checkProjectType(folderPath: string): Promise<string> {
             }
         }
 
+        // Check for FastAPI
+        const pythonFiles = await vscode.workspace.findFiles('**/*.py');
+        console.log('Found Python files:', pythonFiles.length);
+        if (pythonFiles.length > 0) {
+            for (const file of pythonFiles) {
+                console.log('Checking Python file:', file.fsPath);
+                const content = await fs.promises.readFile(file.fsPath, 'utf8');
+                if (content.includes('from fastapi import') || content.includes('import fastapi')) {
+                    console.log('Found FastAPI in file:', file.fsPath);
+                    return 'fastapi';
+                }
+            }
+        }
+
         // Check for Gin/Echo framework
         const goModFiles = await vscode.workspace.findFiles('**/go.mod');
         if (goModFiles.length > 0) {

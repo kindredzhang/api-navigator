@@ -51,6 +51,11 @@ export class ApiEndpointProvider {
             fileExtensions: ['ts'],
             excludePatterns: ['**/test/**', '**/tests/**', '**/Tests/**'],
         }));
+        // python fastapi
+        this.scanners.set('fastapi', new FastAPIScanner({
+            fileExtensions: ['py'],
+            excludePatterns: ['**/test/**', '**/tests/**', '**/Tests/**', '**/__pycache__/**', '**/venv/**'],
+        }));
         // Initialize other scanners...
     }
 
@@ -60,22 +65,31 @@ export class ApiEndpointProvider {
         }
 
         try {
+            console.log('Starting workspace scan...');
             this.isScanning = true;
             this.endpoints = [];
             const workspaceFolders = vscode.workspace.workspaceFolders;
             
             if (!workspaceFolders) {
+                console.log('No workspace folders found');
                 return;
             }
 
+            console.log('Found workspace folders:', workspaceFolders.map(f => f.uri.fsPath));
             const scanPromises = workspaceFolders.map(async folder => {
                 try {
+                    console.log('Detecting project type for folder:', folder.uri.fsPath);
                     const projectType = await this.detectProjectType(folder.uri.fsPath);
+                    console.log('Detected project type:', projectType);
                     const scanner = this.scanners.get(projectType);
                     
                     if (scanner) {
+                        console.log('Using scanner for type:', projectType);
                         const newEndpoints = await scanner.scan(folder.uri.fsPath);
+                        console.log('Found endpoints:', newEndpoints.length);
                         this.endpoints.push(...newEndpoints);
+                    } else {
+                        console.log('No scanner found for project type:', projectType);
                     }
                 } catch (error) {
                     console.error(`Error scanning folder ${folder.uri.fsPath}:`, error);

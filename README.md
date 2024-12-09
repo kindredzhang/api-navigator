@@ -34,6 +34,9 @@ Quick API endpoint navigation for multiple frameworks. Press Ctrl+Shift+A (Cmd+S
 - **Echo (Go)**
   - Route definitions using `e.GET()`, `group.GET()`, etc.
 
+- **FastAPI (Python)**
+  - Route definitions using `app.get()`, `router.get()`, etc.  
+
 ## Planned Support
 
 - Laravel (PHP)
