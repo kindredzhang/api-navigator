@@ -6,6 +6,7 @@ import { GinScanner } from '../scanners/golang/GinScanner';
 import { EchoScanner } from '../scanners/golang/EchoScanner';
 import { ExpressScanner } from '../scanners/node/ExpressScanner';
 import { NestScanner } from '../scanners/node/NestScanner';
+import { FastAPIScanner } from '../scanners/python/FastAPIScanner';
 // Import other scanners...
 
 export class ApiEndpointProvider {

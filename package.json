@@ -105,10 +105,10 @@
       "Gin (Golang)",
       "Echo (Golang)",
       "Express.js (Node.js)",
-      "Nest (Node.js)"
+      "Nest (Node.js)",
+      "FastAPI (Python)"
     ],
     "planned": [
-      "FastAPI (Python)",
       "Laravel (PHP)",
       "ASP.NET Core (C#)"
     ]
