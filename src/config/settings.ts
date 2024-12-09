@@ -39,6 +39,11 @@ export const defaultSettings: ProjectSettings = {
             excludePatterns: ['vendor', 'test'],
             maxFileSizeBytes: 512 * 1024
         },
+        'fastapi': {
+            fileExtensions: ['py'],
+            excludePatterns: ['test', '__pycache__', 'venv', '.env'],
+            maxFileSizeBytes: 512 * 1024
+        },
         'unknown': {
             fileExtensions: [],
             excludePatterns: []

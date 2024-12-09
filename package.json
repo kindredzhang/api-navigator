@@ -79,7 +79,7 @@
     "@types/js-yaml": "^4.0.9",
     "@types/mocha": "^10.0.6",
     "@types/node": "20.x",
-    "@types/vscode": "^1.85.0",
+    "@types/vscode": "^1.95.0",
     "@typescript-eslint/eslint-plugin": "^6.13.1",
     "@typescript-eslint/parser": "^6.13.1",
     "@vscode/test-electron": "^2.3.8",
@@ -105,10 +105,10 @@
       "Gin (Golang)",
       "Echo (Golang)",
       "Express.js (Node.js)",
-      "Nest (Node.js)"
+      "Nest (Node.js)",
+      "FastAPI (Python)"
     ],
     "planned": [
-      "FastAPI (Python)",
       "Laravel (PHP)",
       "ASP.NET Core (C#)"
     ]
