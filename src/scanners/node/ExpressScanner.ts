@@ -45,7 +45,6 @@ export class ExpressScanner extends BaseScanner {
         for (let i = 0; i < lines.length; i++) {
             const line = lines[i].trim();
 
-            // Check for Express application instance
             if (line.includes('express()')) {
                 const match = line.match(/(\w+)\s*=\s*express\(\)/);
                 if (match) {
@@ -53,7 +52,6 @@ export class ExpressScanner extends BaseScanner {
                 }
             }
 
-            // Check for Router instance
             if (line.includes('express.Router()') || line.includes('Router()')) {
                 const match = line.match(/(\w+)\s*=\s*(?:express\.)?Router\(\)/);
                 if (match) {
@@ -61,7 +59,6 @@ export class ExpressScanner extends BaseScanner {
                 }
             }
 
-            // Check for route prefix setting
             if (line.includes('.use(')) {
                 const routeMatch = line.match(/use\(['"](.*?)['"],\s*\w+/);
                 if (routeMatch) {
@@ -69,10 +66,8 @@ export class ExpressScanner extends BaseScanner {
                 }
             }
 
-            // Check for route definition
             const httpMethods = ['get', 'post', 'put', 'delete', 'patch', 'all'];
             for (const method of httpMethods) {
-                // Match multiple route definition patterns
                 const patterns = [
                     // app.get('/path', handler)
                     new RegExp(`${appVarName}\\.${method}\\(['"]([^'"]+)['"]`),

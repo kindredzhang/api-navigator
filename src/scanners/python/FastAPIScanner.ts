@@ -3,7 +3,6 @@ import { ApiEndpoint, HttpMethod, ScannerConfig } from '../../core/types';
 import { FileUtils } from '../../utils/fileSystem';
 
 export class FastAPIScanner extends BaseScanner {
-    // 改为 camelCase 格式
     private static readonly decoratorPatterns = [
         /@app\.(get|post|put|delete|patch|head|options|trace)\s*\(['"]([^'"]+)['"]/i,
         /router\.(get|post|put|delete|patch|head|options|trace)\s*\(['"]([^'"]+)['"]/i,

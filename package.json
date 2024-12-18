@@ -2,13 +2,13 @@
   "name": "api-navigator",
   "displayName": "API Navigator",
   "description": "Quick API endpoint navigation for multiple frameworks. Currently supports Spring Boot REST APIs, with more frameworks coming soon.",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "publisher": "KindredZhang",
   "author": {
     "name": "KindredZhang"
   },
   "engines": {
-    "vscode": "^1.85.0"
+    "vscode": "^1.95.0"
   },
   "categories": [
     "Programming Languages",

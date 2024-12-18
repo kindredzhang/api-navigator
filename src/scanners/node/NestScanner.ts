@@ -47,13 +47,11 @@ export class NestScanner extends BaseScanner {
         for (let i = 0; i < lines.length; i++) {
             const line = lines[i].trim();
 
-            // 检查控制器装饰器
             if (line.includes('@Controller')) {
                 const routeMatch = line.match(/@Controller\(['"]([^'"]*)['"]\)/);
                 if (routeMatch) {
                     baseRoute = routeMatch[1];
                 }
-                // 获取类名
                 for (let j = i + 1; j < lines.length; j++) {
                     const classMatch = lines[j].match(/export\s+class\s+(\w+)/);
                     if (classMatch) {
@@ -64,7 +62,6 @@ export class NestScanner extends BaseScanner {
                 continue;
             }
 
-            // 检查路由装饰器 - 使用字符串作为键值，而不是直接使用装饰器名
             const decoratorMap: Record<string, HttpMethod> = {
                 'Get': 'GET',
                 'Post': 'POST',
@@ -79,7 +76,6 @@ export class NestScanner extends BaseScanner {
                     const pathMatch = line.match(new RegExp(`${decoratorPattern}\\(['"]([^'"]*)['"](\\)|$)`));
                     const path = pathMatch ? pathMatch[1] : '/';
 
-                    // 获取方法名
                     let methodName = 'unknown';
                     for (let j = i + 1; j < lines.length; j++) {
                         const methodMatch = lines[j].match(/(?:async\s+)?(\w+)\s*\(/);

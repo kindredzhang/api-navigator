@@ -1,4 +1,7 @@
 # Change Log
+## [0.0.6] - 2024-12-18
+ - Added support for **FastAPI**: You can scan and navigate API endpoints in Python projects.
+
 ## [0.0.5] - 2024-11-11
   - Fixed some bugs
   
